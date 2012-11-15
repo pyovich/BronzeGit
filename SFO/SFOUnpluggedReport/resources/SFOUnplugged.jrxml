@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" whenNoDataType="NoDataSection" columnWidth="540" leftMargin="36" rightMargin="36" topMargin="36" bottomMargin="36" uuid="dd771054-3da6-44df-943c-91a08e28bcbe">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Georgia" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Franklin Gothic Medium" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataElement" fontName="Tahoma" fontSize="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="p_numHours" class="java.lang.Integer"/>
+	<field name="accountName" class="java.lang.String"/>
+	<field name="transactionTime" class="java.sql.Timestamp"/>
+	<field name="customerDeviceDesc" class="java.lang.String"/>
+	<field name="imei" class="java.lang.String"/>
+	<field name="custDeviceId" class="java.lang.Long"/>
+	<field name="latitude" class="java.lang.Double"/>
+	<field name="longitude" class="java.lang.Double"/>
+	<field name="location" class="java.lang.String"/>
+	<field name="accountId" class="java.lang.Long"/>
+	<field name="transactionType" class="java.lang.String"/>
+	<group name="Account">
+		<groupExpression><![CDATA[$F{accountName}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<frame>
+					<reportElement uuid="a2545bd6-6662-4952-b6ba-aa401a1bc387" mode="Opaque" x="-42" y="7" width="631" height="16" forecolor="#CCCCFF" backcolor="#CCCCFF"/>
+					<staticText>
+						<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="42" y="0" width="92" height="16"/>
+						<textElement>
+							<font size="12" isBold="true" isUnderline="false"/>
+						</textElement>
+						<text><![CDATA[Account Name:]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="5c554fff-73fc-4f2e-bf6d-0ba1b0d442e2" style="DataElement" x="134" y="0" width="448" height="16"/>
+						<textElement>
+							<font size="12" isBold="false" isItalic="false" isUnderline="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{accountName}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="10"/>
+		</groupFooter>
+	</group>
+	<group name="deviceName">
+		<groupExpression><![CDATA[$F{customerDeviceDesc}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<printWhenExpression><![CDATA[$F{accountName} != null]]></printWhenExpression>
+				<staticText>
+					<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="0" y="0" width="67" height="14"/>
+					<textElement>
+						<font size="10" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Device Name:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="3492832b-0b2e-4f07-bbf9-6b930bad3f07" style="DataElement" x="67" y="0" width="195" height="14"/>
+					<textElement>
+						<font size="10" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customerDeviceDesc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="262" y="0" width="67" height="14"/>
+					<textElement>
+						<font size="10" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[IMEI:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="1ebf86f6-ec5d-47c9-8eee-1c12eb214ccf" style="DataElement" x="329" y="0" width="104" height="14"/>
+					<textElement>
+						<font size="10" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{imei}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="0" y="15" width="256" height="14"/>
+					<textElement>
+						<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Reported Event and Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="262" y="15" width="58" height="14"/>
+					<textElement>
+						<font size="10" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Location:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band height="256" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<image evaluationTime="Auto">
+				<reportElement uuid="1663a270-ed99-44a8-a1cf-8e4b8e77b632" positionType="Float" mode="Transparent" x="-42" y="-42" width="362" height="250"/>
+				<imageExpression><![CDATA["paw_20.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b1d6669e-4ed3-415c-be31-dd18d17bb095" style="SubTitle" x="134" y="0" width="406" height="114" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="28" isUnderline="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Devices Reported Being Powered On or Unplugged in the Past " + $P{p_numHours}.toString() + " Hours."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2128e162-b504-4489-92fa-7b55e412d1bb" style="SubTitle" x="134" y="114" width="406" height="22"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<line>
+				<reportElement uuid="454e51c5-6815-4029-8781-850923a0b1e2" x="-42" y="0" width="631" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="04aa191e-cb10-4533-ba47-aa211e8988ea" style="DataElement" x="0" y="3" width="157" height="14"/>
+				<textElement>
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transactionType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="18b742d3-db37-47fb-8535-7ec51a685093" style="DataElement" x="157" y="3" width="99" height="14"/>
+				<textElement>
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transactionTime}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="Reference">
+				<reportElement uuid="48f2bf53-8154-4f82-a4de-dbae11a0b020" style="DataElement" x="262" y="3" width="278" height="14"/>
+				<textElement markup="html">
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://maps.google.com/maps?q=" + $F{latitude}.toString() + "," + $F{longitude}.toString() + "&z=19"]]></hyperlinkReferenceExpression>
+				<hyperlinkTooltipExpression><![CDATA["View in Google Maps"]]></hyperlinkTooltipExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="262" y="17" width="58" height="14"/>
+				<textElement>
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Latitude:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="242dd801-12b5-4e49-b6bb-85e94fa93a7d" style="DataElement" x="320" y="17" width="78" height="14"/>
+				<textElement>
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{latitude}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f65788ec-7ed9-4486-a216-62f9eb4fc835" style="DataElement" x="398" y="17" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Longitude:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="11e925d1-d478-4450-9d86-70acaf6c0900" style="DataElement" x="449" y="17" width="78" height="14"/>
+				<textElement>
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{longitude}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="41c330fc-1c24-4ed3-b9e6-aa73b4511a91" mode="Opaque" x="-54" y="1" width="643" height="24" forecolor="#D0B48E" backcolor="#CCCCFF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="356dd7ca-7305-49f0-a75b-c79b16bc31da" style="Column header" x="554" y="1" width="40" height="20" forecolor="#000099"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5416b148-3772-4cab-8b87-b647171bc152" style="Column header" x="474" y="1" width="80" height="20" forecolor="#000099"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="f3c4c7f6-9ff7-4666-b5c6-2be8579fa56f" style="Column header" x="54" y="1" width="197" height="20" forecolor="#000099"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="218">
+			<printWhenExpression><![CDATA[$F{accountName} == null]]></printWhenExpression>
+			<staticText>
+				<reportElement uuid="0fca0c9e-f809-4cfa-94ea-9f753e873161" style="SubTitle" x="0" y="156" width="540" height="44" forecolor="#000099"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[No Devices were reported being powered off or
+unplugged during this time period.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2128e162-b504-4489-92fa-7b55e412d1bb" style="SubTitle" x="134" y="114" width="406" height="22"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b1d6669e-4ed3-415c-be31-dd18d17bb095" style="SubTitle" x="134" y="0" width="406" height="114" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="28" isUnderline="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Devices Reported Being Powered On or Unplugged in the Past " + $P{p_numHours}.toString() + " Hours."]]></textFieldExpression>
+			</textField>
+		</band>
+	</noData>
+</jasperReport>
